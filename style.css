@@ -20,7 +20,7 @@ body {
 
 .quote {
   font-size: 2.5rem;
-  line-height: 1.5rem;
+  line-height: 3.5rem;
 }
 
 .author {
@@ -29,4 +29,14 @@ body {
 
 .fas {
   font-size: 3.5rem;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.twitter-btn {
+  width: 80px;
+  height: 40px;
 }
