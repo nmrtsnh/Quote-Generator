@@ -3,11 +3,28 @@ const quoteText = document.getElementById("quote");
 const authorText = document.getElementById("author");
 const twitterBtn = document.getElementById("twitter");
 const newQuoteBtn = document.getElementById("new-quote");
+const loader = document.getElementById("loader");
+
+// -----> If you're using the localQuotes array you can remove apiQuotes variable
 
 let apiQuotes = [];
 
+//Show Loading
+
+function loading() {
+  loader.hidden = false;
+  quoteContainer.hidden = true;
+}
+
+//Hide Loading
+function complete() {
+  quoteContainer.hidden = false;
+  loader.hidden = true;
+}
+
 // Show new quote
 function newQuote() {
+  loading();
   //Pick random quote from apiquote array
   const quote = apiQuotes[Math.floor(Math.random() * apiQuotes.length)];
 
@@ -21,14 +38,18 @@ function newQuote() {
 
   // Check the quote length to determine styling
   if (quote.text.length > 120) {
-    quoteText.classList.add("Long-quote");
+    quoteText.classList.add("long-quote");
   } else {
-    quoteText.classList.remove("Long-quote");
+    quoteText.classList.remove("long-quote");
   }
+  //Set Quote, Hide loader
   quoteText.textContent = quote.text;
+
+  complete();
 }
 
 async function getQuotes() {
+  loading();
   const apiUrl = "https://jacintodesign.github.io/quotes-api/data/quotes.json";
 
   try {
